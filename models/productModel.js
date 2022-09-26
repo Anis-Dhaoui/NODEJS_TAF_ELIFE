@@ -1,26 +1,30 @@
 var mongoose = require('mongoose');
-require ('mongoose-currency').loadType(mongoose);
+require('mongoose-currency').loadType(mongoose);
 var Currency = mongoose.Types.Currency;
 
 var productSchema = new mongoose.Schema(
     {
-        ref:{
-            type:Number,
-            required:true,
+        ref: {
+            type: Number,
+            required: true,
             unique: true
         },
-        wording:{
-            type:String,
-            required:true
+        wording: {
+            type: String,
+            required: true
         },
-        price:{
+        price: {
             type: Currency,
             required: true,
             min: 0
         },
-        type:{
+        type: {
             type: String,
             default: "Product"
+        },
+        images: {
+            type: Array,
+            default: []
         }
     },
     {
