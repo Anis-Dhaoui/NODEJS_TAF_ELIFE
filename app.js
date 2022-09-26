@@ -3,13 +3,14 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var mongoose = require('mongoose');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var productRouter = require('./routes/productRouter');
 
 // Connecting with Mongodb Server
-const url = 'mongodb://localhost:27017/my_db';
+const url = 'mongodb://localhost:27017/taf_db';
 const connect = mongoose.connect(url);
 connect.then((db) =>{
   console.log("Connected to Mongodb Server Correctly...");

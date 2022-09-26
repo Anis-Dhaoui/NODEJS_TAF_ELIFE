@@ -1,6 +1,6 @@
 var express = require('express');
 var productRouter = express.Router();
-var Products = require('../models/productSchema');
+var Products = require('../models/productModel');
 
 //$$$$$$$$$$$ /products endpoint $$$$$$$$$$$
 productRouter.route('/')
@@ -8,7 +8,8 @@ productRouter.route('/')
         Products.find()
             .then((products) => {
                 if (products !== null) {
-                    res.render('showContacts', { data: products });
+                    //res.render('showContacts', { data: products });
+                    res.json(products);
                 } else {
                     err = new Error("products collection is empty or not found");
                     next(err);
@@ -20,8 +21,8 @@ productRouter.route('/')
 
     .post((req, res, next) => {
         Products.create(req.body)
-            .then((addedContact) => {
-                res.redirect('/product');
+            .then((addedProduct) => {
+                res.json(addedProduct);
             },
                 err => {
                     // if err.code === 11000 that means there is a duplicate key
@@ -64,10 +65,11 @@ productRouter.route('/:productId')
 
     .put((req, res, next) => {
         Products.findByIdAndUpdate(req.params.productId, { $set: req.body }, { new: true })
-            .then((updatedContact) => {
-                console.log(updatedContact);
-                if (updatedContact !== null) {
-                    res.redirect(`/products/${req.params.productId}/`);
+            .then((updatedProduct) => {
+                console.log(updatedProduct);
+                if (updatedProduct !== null) {
+                    res.json(updatedProduct);
+                    // res.redirect(`/products/${req.params.productId}/`);
                 } else {
                     err = new Error("product not found");
                     next(err);
@@ -80,7 +82,7 @@ productRouter.route('/:productId')
     .delete((req, res, next) => {
         Products.findByIdAndRemove(req.params.productId)
             .then((product) => {
-                res.redirect('/product/');
+                res.json(product);
                 console.log(product);
             },
                 err => next(err))
