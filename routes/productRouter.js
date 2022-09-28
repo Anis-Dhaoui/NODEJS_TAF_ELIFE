@@ -8,8 +8,7 @@ productRouter.route('/')
         Products.find()
             .then((products) => {
                 if (products !== null) {
-                    //res.render('showContacts', { data: products });
-                    res.json(products);
+                    res.render('products', { data: products });
                 } else {
                     err = new Error("products collection is empty or not found");
                     next(err);

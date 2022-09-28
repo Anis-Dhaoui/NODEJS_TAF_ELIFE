@@ -3,21 +3,21 @@
 {% block body %}
 
 <div class="container">
-    <h3 class="h3">shopping Demo-1 </h3>
+    <h3 class="h3">Toutes Les Produits </h3>
     <div class="row">
+        {% for item in data %}
         <div class="col-md-3 col-sm-6">
             <div class="product-grid">
                 <div class="product-image">
                     <a href="#">
-                        <img class="pic-1" src="images/products/product-1-img-1.jpg">
-                        <img class="pic-2" src="images/products/product-1-img-2.jpg">
+                        <img class="pic-1" src={{item.images[0]}}>
+                        <img class="pic-2" src={{item.images[1]}}>
                     </a>
                     <ul class="social">
-                        <li><a href="" data-tip="Quick View"><i class="fa fa-search"></i></a></li>
-                        <li><a href="" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
-                        <li><a href="" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
+                        <li><a href="" data-toggle="modal" data-target="#editForm" data-tip="Modifier"><i class="fa fa-edit"></i></a></li>
+                        <li><a href="" data-tip="Supprimer"><i class="fa fa-trash"></i></a></li>
                     </ul>
-                    <span class="product-new-label">Sale</span>
+                    <span class="product-new-label">ref:{{item.ref}} </span>
                     <span class="product-discount-label">20%</span>
                 </div>
                 <ul class="rating">
@@ -28,108 +28,55 @@
                     <li class="fa fa-star disable"></li>
                 </ul>
                 <div class="product-content">
-                    <h3 class="title"><a href="#">Women's Blouse</a></h3>
-                    <div class="price">$16.00
-                        <span>$20.00</span>
+                    <h3 class="title"><a href="#">{{item.wording}}</a></h3>
+                    <div class="price">${{item.price}}
                     </div>
-                    <a class="add-to-cart" href="">+ Add To Cart</a>
+                    <i class="add-to-cart" href="">{{item.type}}</i>
                 </div>
             </div>
         </div>
-        <div class="col-md-3 col-sm-6">
-            <div class="product-grid">
-                <div class="product-image">
-                    <a href="#">
-                        <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo9/images/img-3.jpg">
-                        <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo9/images/img-4.jpg">
-                    </a>
-                    <ul class="social">
-                        <li><a href="" data-tip="Quick View"><i class="fa fa-search"></i></a></li>
-                        <li><a href="" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
-                        <li><a href="" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
-                    </ul>
-                    <span class="product-new-label">Sale</span>
-                    <span class="product-discount-label">50%</span>
-                </div>
-                <ul class="rating">
-                    <li class="fa fa-star"></li>
-                    <li class="fa fa-star"></li>
-                    <li class="fa fa-star"></li>
-                    <li class="fa fa-star"></li>
-                    <li class="fa fa-star"></li>
-                </ul>
-                <div class="product-content">
-                    <h3 class="title"><a href="#">Men's Plain Tshirt</a></h3>
-                    <div class="price">$5.00
-                        <span>$10.00</span>
+
+        {# $$$$$$$$$$$$ EDIT MODAL $$$$$$$$$$$$$$ #}
+        <div class="modal fade" id="editForm" tabindex="-1" role="dialog" aria-labelledby="editModal"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Ajouter nouveau produit</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                    <a class="add-to-cart" href="">+ Add To Cart</a>
+                    <div class="modal-body">
+                        <form>
+                            <div class="form-group">
+                                <label for="ref" class="col-form-label">Reference:</label>
+                                <input type="text" class="form-control" id="ref" value={{item.ref}}>
+                            </div>
+                            <div class="form-group">
+                                <label for="wording" class="col-form-label">Libellé:</label>
+                                <input type="text" class="form-control" id="wording" value={{item.wording}}>
+                            </div>
+                            <div class="form-group">
+                                <label for="price" class="col-form-label">Prix:</label>
+                                <input type="text" class="form-control" id="price" value={{item.price}}>
+                            </div>
+                            <div class="form-group">
+                                <label for="type" class="col-form-label">Type:</label>
+                                <input type="text" class="form-control" id="type" value={{item.type}}>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Send message</button>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-3 col-sm-6">
-            <div class="product-grid">
-                <div class="product-image">
-                    <a href="#">
-                        <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo9/images/img-5.jpg">
-                        <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo9/images/img-6.jpg">
-                    </a>
-                    <ul class="social">
-                        <li><a href="" data-tip="Quick View"><i class="fa fa-search"></i></a></li>
-                        <li><a href="" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
-                        <li><a href="" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
-                    </ul>
-                    <span class="product-new-label">Sale</span>
-                    <span class="product-discount-label">50%</span>
-                </div>
-                <ul class="rating">
-                    <li class="fa fa-star"></li>
-                    <li class="fa fa-star"></li>
-                    <li class="fa fa-star"></li>
-                    <li class="fa fa-star"></li>
-                    <li class="fa fa-star"></li>
-                </ul>
-                <div class="product-content">
-                    <h3 class="title"><a href="#">Men's Plain Tshirt</a></h3>
-                    <div class="price">$5.00
-                        <span>$10.00</span>
-                    </div>
-                    <a class="add-to-cart" href="">+ Add To Cart</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3 col-sm-6">
-            <div class="product-grid">
-                <div class="product-image">
-                    <a href="#">
-                        <img class="pic-1" src="http://bestjquery.com/tutorial/product-grid/demo9/images/img-7.jpg">
-                        <img class="pic-2" src="http://bestjquery.com/tutorial/product-grid/demo9/images/img-8.jpg">
-                    </a>
-                    <ul class="social">
-                        <li><a href="" data-tip="Quick View"><i class="fa fa-search"></i></a></li>
-                        <li><a href="" data-tip="Add to Wishlist"><i class="fa fa-shopping-bag"></i></a></li>
-                        <li><a href="" data-tip="Add to Cart"><i class="fa fa-shopping-cart"></i></a></li>
-                    </ul>
-                    <span class="product-new-label">Sale</span>
-                    <span class="product-discount-label">50%</span>
-                </div>
-                <ul class="rating">
-                    <li class="fa fa-star"></li>
-                    <li class="fa fa-star"></li>
-                    <li class="fa fa-star"></li>
-                    <li class="fa fa-star"></li>
-                    <li class="fa fa-star"></li>
-                </ul>
-                <div class="product-content">
-                    <h3 class="title"><a href="#">Men's Plain Tshirt</a></h3>
-                    <div class="price">$5.00
-                        <span>$10.00</span>
-                    </div>
-                    <a class="add-to-cart" href="">+ Add To Cart</a>
-                </div>
-            </div>
-        </div>
+        {% endfor %}
     </div>
 </div>
+
 
 {% endblock %}
