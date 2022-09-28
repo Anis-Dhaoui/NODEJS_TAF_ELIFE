@@ -64,10 +64,10 @@ productRouter.route('/:productId')
 
     .put((req, res, next) => {
         Products.findByIdAndUpdate(req.params.productId, { $set: req.body }, { new: true })
-            .then((updatedProduct) => {
-                console.log(updatedProduct);
-                if (updatedProduct !== null) {
-                    res.json(updatedProduct);
+            .then((product) => {
+                console.log(req.body);
+                if (product !== null) {
+                    res.redirect('/products');
                     // res.redirect(`/products/${req.params.productId}/`);
                 } else {
                     err = new Error("product not found");
