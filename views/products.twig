@@ -16,7 +16,12 @@
                     <ul class="social">
                         <li><a href="" data-toggle="modal" data-target="#editForm" data-tip="Modifier"><i
                                     class="fa fa-edit"></i></a></li>
-                        <li><a href="" data-tip="Supprimer"><i class="fa fa-trash"></i></a></li>
+                        <li>
+                            <form id="delForm" method="post" action="/products/{{item._id}}?_method=DELETE">
+                               {# <button type="submit">submit</button> #}
+                            <a href="javascript:$('#delForm').submit();" data-tip="Supprimer"><i class="fa fa-trash"></i></a>
+                        </form>
+                        </li>
                     </ul>
                     <span class="product-new-label">ref:{{item.ref}} </span>
                     <span class="product-discount-label">20%</span>
@@ -57,9 +62,6 @@
                             <div class="form-group">
                                 <label for="wording" class="col-form-label">Libellé:</label>
                                 <input type="text" class="form-control" name="wording" id="wording" value={{item.wording}}>
-                                <pre>
-                                    {{ dump(item.wording) }}
-                                </pre>
                             </div>
                             <div class="form-group">
                                 <label for="price" class="col-form-label">Prix:</label>

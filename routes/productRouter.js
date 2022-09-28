@@ -35,15 +35,15 @@ productRouter.route('/')
             .catch(err => next(err));
     })
 
-    .delete((req, res, next) =>{
+    .delete((req, res, next) => {
         Dishes.remove({})
-        .then((resp) =>{
-            res.statusCode = 200;
-            res.setHeader('Content-Type', 'application/json');
-            res.json({ success: false, message: "All products has been deleted" });
-        },
-        (err) => next(err))
-        .catch((err) => next(err))  
+            .then((resp) => {
+                res.statusCode = 200;
+                res.setHeader('Content-Type', 'application/json');
+                res.json({ success: false, message: "All products has been deleted" });
+            },
+                (err) => next(err))
+            .catch((err) => next(err))
     });
 
 
@@ -81,8 +81,7 @@ productRouter.route('/:productId')
     .delete((req, res, next) => {
         Products.findByIdAndRemove(req.params.productId)
             .then((product) => {
-                res.json(product);
-                console.log(product);
+                res.redirect('/products');
             },
                 err => next(err))
             .catch(err => next(err))
