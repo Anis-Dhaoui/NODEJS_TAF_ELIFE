@@ -22,7 +22,10 @@ var productSchema = new mongoose.Schema(
         },
         images: {
             type: Array,
-            default: []
+            default: [
+                "images/products/product-5-img-1.jpg",
+                "images/products/product-5-img-2.jpg"
+            ]
         }
     },
     {

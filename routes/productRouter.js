@@ -21,7 +21,7 @@ productRouter.route('/')
     .post((req, res, next) => {
         Products.create(req.body)
             .then((addedProduct) => {
-                res.json(addedProduct);
+                res.redirect('/products');
             },
                 err => {
                     // if err.code === 11000 that means there is a duplicate key
