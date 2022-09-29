@@ -1,9 +1,22 @@
 var express = require('express');
-var router = express.Router();
+var routerUser = express.Router();
+var Users = require('../models/userModel');
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+routerUser.route('/')
+  .get((req, res, next) => {
+    Users.find()
+      .then((users) => {
+        if (users != null) {
+          res.json(users);
+        } else {
+          err = new Error("Users collection is empty or not found");
+          next(err);
+        }
+      },
+        err => next(err)
+          .catch(err => next(err)))
+  })
 
-module.exports = router;
+
+module.exports = routerUser;

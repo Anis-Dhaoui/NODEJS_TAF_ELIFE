@@ -2,9 +2,11 @@ var express = require('express');
 var productRouter = express.Router();
 var Products = require('../models/productModel');
 
+var checkAuth = require('../auth');
+
 //$$$$$$$$$$$ /products endpoint $$$$$$$$$$$
 productRouter.route('/')
-    .get((req, res, next) => {
+    .get(checkAuth, (req, res, next) => {
         Products.find()
             .then((products) => {
                 if (products !== null) {
