@@ -14,7 +14,7 @@
                         <img class="pic-2" src={{item.images[1]}}>
                     </a>
                     <ul class="social">
-                        <li><a href="" data-toggle="modal" data-target="#editForm" data-tip="Modifier"><i
+                        <li><a href="" data-toggle="modal" data-target="#form-{{item._id}}" data-tip="Modifier"><i
                                     class="fa fa-edit"></i></a></li>
                         <li>
                             <form id="delForm" method="post" action="/products/{{item._id}}?_method=DELETE">
@@ -43,7 +43,7 @@
         </div>
 
         {# $$$$$$$$$$$$ EDIT MODAL $$$$$$$$$$$$$$ #}
-        <div class="modal fade" id="editForm" tabindex="-1" role="dialog" aria-labelledby="editModal"
+        <div class="modal fade" id="form-{{item._id}}" tabindex="-1" role="dialog" aria-labelledby="editModal"
             aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
