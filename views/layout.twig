@@ -34,11 +34,17 @@
         <li class="nav-item active">
           <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/products">Products</a>
+        <li id="product-dropdown" class="nav-item dropdown">
+          <a href="/products" class="dropdown-toggle nav-link">Products<span class="caret mt-5"></span></a>
+          <ul class="dropdown-menu mt-0">
+            <li role="separator" class="divider"></li>
+            <li><a href="" data-toggle="modal" data-target="#addForm" class="nav-link">Ajouter produit</a></li>
+            <li role="separator" class="divider"></li>
+          </ul>
+          {# <a class="nav-link" href="/products">Products</a> #}
         </li>
         <li class="nav-item">
-          <a class="nav-link " href="#">Events</a>
+          <a class="nav-link" href="#">Events</a>
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
@@ -47,6 +53,53 @@
       </form>
     </div>
   </nav>
+
+
+
+  {# $$$$$$$$$$$$ ADD MODAL $$$$$$$$$$$$$$ #}
+  <div class="modal fade" id="addForm" tabindex="-1" role="dialog" aria-labelledby="editModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ajouter un nouveau produit</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form method="post" action="/products/">
+            <div class="form-group">
+              <label for="ref" class="col-form-label">Reference:</label>
+              <input type="text" class="form-control" name="ref" id="ref">
+            </div>
+            <div class="form-group">
+              <label for="wording" class="col-form-label">Libellé:</label>
+              <input type="text" class="form-control" name="wording" id="wording">
+            </div>
+            <div class="form-group">
+              <label for="price" class="col-form-label">Prix:</label>
+              <input type="number" step="00.01" class="form-control" name="price" id="price">
+            </div>
+            <div class="form-group">
+              <label for="type" class="col-form-label">Type:</label>
+              <input type="text" class="form-control" name="type" id="type">
+            </div>
+            <div class="form-group">
+              <label for="type" class="col-form-label">Image 1:</label>
+              <input type="text" class="form-control" name="type" id="type">
+            </div>
+            <div class="form-group">
+              <label for="type" class="col-form-label">Image 2:</label>
+              <input type="text" class="form-control" name="type" id="type">
+            </div>
+            <div class="form-group d-flex justify-content-end">
+              <button type="submit" class="btn btn-primary">Ajouter</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
   {% block body %}{% endblock %}
 </body>
 

@@ -18,9 +18,9 @@
                                     class="fa fa-edit"></i></a></li>
                         <li>
                             <form id="delForm" method="post" action="/products/{{item._id}}?_method=DELETE">
-                               {# <button type="submit">submit</button> #}
-                            <a href="javascript:$('#delForm').submit();" data-tip="Supprimer"><i class="fa fa-trash"></i></a>
-                        </form>
+                                <a href="javascript:$('#delForm').submit();" data-tip="Supprimer"><i
+                                        class="fa fa-trash"></i></a>
+                            </form>
                         </li>
                     </ul>
                     <span class="product-new-label">ref:{{item.ref}} </span>
@@ -61,11 +61,13 @@
                             </div>
                             <div class="form-group">
                                 <label for="wording" class="col-form-label">Libellé:</label>
-                                <input type="text" class="form-control" name="wording" id="wording" value={{item.wording}}>
+                                <input type="text" class="form-control" name="wording" id="wording"
+                                    value={{item.wording}}>
                             </div>
                             <div class="form-group">
                                 <label for="price" class="col-form-label">Prix:</label>
-                                <input type="number" step="00.01" class="form-control" name="price" id="price" value={{item.price}}>
+                                <input type="number" step="00.01" class="form-control" name="price" id="price"
+                                    value={{item.price}}>
                             </div>
                             <div class="form-group">
                                 <label for="type" class="col-form-label">Type:</label>

@@ -316,3 +316,9 @@ h3.h3 {
     margin-bottom: 30px
   }
 }
+
+
+/* $$$$$$$$$$$$$$$$$$$$$$$$$$$$$ HEADER $$$$$$$$$$$$$$$$$$$$$$$$$$$$$ */
+  #product-dropdown:hover .dropdown-menu {
+    display: block;
+  }
