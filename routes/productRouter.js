@@ -21,7 +21,7 @@ productRouter.route('/')
             .catch(err => next(err))
     })
 
-    .post((req, res, next) => {
+    .post(checkAuth, (req, res, next) => {
         Products.create(req.body)
             .then((addedProduct) => {
                 res.redirect('/products');
@@ -38,7 +38,7 @@ productRouter.route('/')
             .catch(err => next(err));
     })
 
-    .delete((req, res, next) => {
+    .delete(checkAuth, (req, res, next) => {
         Dishes.remove({})
             .then((resp) => {
                 res.statusCode = 200;
@@ -52,7 +52,7 @@ productRouter.route('/')
 
 //$$$$$$$$$$$ /products/productId endpoint $$$$$$$$$$$
 productRouter.route('/:productId')
-    .get((req, res, next) => {
+    .get(checkAuth, (req, res, next) => {
         Products.findById(req.params.productId)
             .then((product) => {
                 if (product !== null) {
@@ -65,7 +65,7 @@ productRouter.route('/:productId')
             .catch(err => next(err))
     })
 
-    .put((req, res, next) => {
+    .put(checkAuth, (req, res, next) => {
         Products.findByIdAndUpdate(req.params.productId, { $set: req.body }, { new: true })
             .then((product) => {
                 console.log(req.body);
@@ -81,7 +81,7 @@ productRouter.route('/:productId')
             .catch(err => next(err))
     })
 
-    .delete((req, res, next) => {
+    .delete(checkAuth, (req, res, next) => {
         Products.findByIdAndRemove(req.params.productId)
             .then((product) => {
                 res.redirect('/products');

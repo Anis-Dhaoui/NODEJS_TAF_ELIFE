@@ -2,7 +2,6 @@ var express = require('express');
 var routerUser = express.Router();
 var User = require('../models/userModel');
 var passport = require('passport');
-const { router } = require('../app');
 
 /* GET users listing. */
 routerUser.route('/')
