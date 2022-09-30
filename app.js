@@ -6,7 +6,6 @@ var logger = require('morgan');
 var mongoose = require('mongoose');
 
 // AUTHENTICATION WITH PASSPORT SESSION
-var Auth = require('./auth');
 var session = require('express-session');
 var fileStore = require('session-file-store')(session);
 var passport = require('passport');
@@ -33,7 +32,7 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'twig');
-
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -45,7 +44,7 @@ app.use(session({
   name: 'session-id',
   secret: '01234-56789-01234-56789',
   saveUninitialized: false,
-  resave: true,
+  resave: false,
   store: new fileStore()
 }));
 app.use(passport.initialize());
@@ -54,9 +53,6 @@ app.use(passport.session());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-//$$$$$$$$$$$$$$$$$$$$$$$$ AUTH MIDDLEWARE $$$$$$$$$$$$$$$$$$$$$$$$$$
-app.use(Auth);
-app.use(express.static(path.join(__dirname, 'public')));
 app.use('/products', productRouter);
 
 // catch 404 and forward to error handler

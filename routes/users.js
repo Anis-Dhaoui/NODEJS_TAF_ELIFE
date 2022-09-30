@@ -20,7 +20,10 @@ routerUser.route('/')
           .catch(err => next(err)))
   });
 
-routerUser.post('/login', passport.authenticate('local'), (req, res) => {
+routerUser.post('/login', 
+                passport.authenticate('local', 
+                {successRedirect: '/products', failureRedirect: '/'}),
+                (req, res) => {
   res.statusCode = 200;
   res.setHeader('Content-Type', 'application/json');
   res.json({ Success: true, status: "Successfully authenticated" });

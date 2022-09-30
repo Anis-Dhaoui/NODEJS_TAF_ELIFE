@@ -7,6 +7,7 @@ var checkAuth = require('../auth');
 //$$$$$$$$$$$ /products endpoint $$$$$$$$$$$
 productRouter.route('/')
     .get(checkAuth, (req, res, next) => {
+        console.log(req.user);
         Products.find()
             .then((products) => {
                 if (products !== null) {

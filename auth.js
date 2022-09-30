@@ -25,11 +25,12 @@
 
 module.exports = auth = (req, res, next) =>{
 
-    if(!req.rememberMe){
-        var err = new Error("You are not athenticated");
-        res.setHeader('WWW-Authenticate', 'Basic');
-        err.status = 403;
-        next(err);
+    if(!req.user){
+        // var err = new Error("You are not athenticated");
+        // res.setHeader('WWW-Authenticate', 'Basic');
+        // err.status = 403;
+        // next(err);
+        res.redirect('/');
 
     }else{
         next();
