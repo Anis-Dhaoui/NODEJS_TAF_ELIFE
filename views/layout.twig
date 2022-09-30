@@ -31,28 +31,30 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
       <a class="navbar-brand" href="#">Nodejs</a>
       <ul class="navbar-nav mx-auto mt-2 mt-lg-0">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-        </li>
         <li id="product-dropdown" class="nav-item dropdown">
-          <a href="/products" class="dropdown-toggle nav-link">Products<span class="caret mt-5"></span></a>
+          <a href="/products" class="dropdown-toggle nav-link">Produits<span class="caret mt-5"></span></a>
           <ul class="dropdown-menu mt-0">
-            <li role="separator" class="divider"></li>
             <li><a href="" data-toggle="modal" data-target="#addForm" class="nav-link">Ajouter produit</a></li>
-            <li role="separator" class="divider"></li>
           </ul>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Events</a>
+          <a class="nav-link" href="#">Événement</a>
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Chercher</button>
       </form>
       {% if userInfo %}
-      <img width="50" height="50" src="images/profile_img.jpg" alt="profile-image" class="rounded-circle mx-2">
-      <b class="text-capitalize">{{userInfo.username}}</b>
+      <ul style="list-style-type: none;" id="profile-avatar">
+        <li class="dropdown">
+          <img width="50" height="50" src="images/profile_img.jpg" alt="profile-image" class="rounded-circle mx-2">
+          <b class="text-capitalize">{{userInfo.username}}</b>
+          <ul id="logout-container" class="dropdown-menu mt-0">
+            <li class="mr-5"><a href="/users/logout">Déconnecter</a></li>
+          </ul>
+        </li>
+      </ul>
       {% endif %}
     </div>
   </nav>

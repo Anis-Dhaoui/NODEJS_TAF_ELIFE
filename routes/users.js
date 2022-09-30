@@ -19,15 +19,15 @@ routerUser.route('/')
           .catch(err => next(err)))
   });
 
-routerUser.post('/login', 
-                passport.authenticate('local', 
-                {successRedirect: '/products', failureRedirect: '/'}),
-                (req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'application/json');
-  res.json({ Success: true, status: "Successfully authenticated" });
-  
-});
+routerUser.post('/login',
+  passport.authenticate('local',
+    { successRedirect: '/products', failureRedirect: '/' }),
+  (req, res) => {
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'application/json');
+    res.json({ Success: true, status: "Successfully authenticated" });
+
+  });
 
 routerUser.post('/signup', (req, res, next) => {
   User.register(new User({ username: req.body.username }), req.body.password, (err, user) => {
@@ -47,4 +47,14 @@ routerUser.post('/signup', (req, res, next) => {
   })
 });
 
+routerUser.get('/logout', (req, res, next) => {
+  if (req.session) {
+    req.session.destroy();
+    res.clearCookie('session-id');
+    res.redirect('/');
+  } else {
+    var err = new Error("You are not logged in");
+    next(err);
+  }
+})
 module.exports = routerUser;

@@ -322,3 +322,7 @@ h3.h3 {
   #product-dropdown:hover .dropdown-menu {
     display: block;
   }
+
+  #profile-avatar:hover #logout-container {
+    display: block;
+  }
