@@ -11,7 +11,7 @@ productRouter.route('/')
         Products.find()
             .then((products) => {
                 if (products !== null) {
-                    res.render('products', { data: products });
+                    res.render('products', { data: products, userInfo: req.user });
                 } else {
                     err = new Error("products collection is empty or not found");
                     next(err);

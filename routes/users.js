@@ -26,6 +26,7 @@ routerUser.post('/login',
   res.statusCode = 200;
   res.setHeader('Content-Type', 'application/json');
   res.json({ Success: true, status: "Successfully authenticated" });
+  
 });
 
 routerUser.post('/signup', (req, res, next) => {
@@ -45,4 +46,5 @@ routerUser.post('/signup', (req, res, next) => {
     }
   })
 });
+
 module.exports = routerUser;

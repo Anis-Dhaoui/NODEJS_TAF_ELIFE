@@ -41,7 +41,6 @@
             <li><a href="" data-toggle="modal" data-target="#addForm" class="nav-link">Ajouter produit</a></li>
             <li role="separator" class="divider"></li>
           </ul>
-          {# <a class="nav-link" href="/products">Products</a> #}
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Events</a>
@@ -51,9 +50,12 @@
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
       </form>
+      {% if userInfo %}
+      <img width="50" height="50" src="images/profile_img.jpg" alt="profile-image" class="rounded-circle mx-2">
+      <b class="text-capitalize">{{userInfo.username}}</b>
+      {% endif %}
     </div>
   </nav>
-
 
 
   {# $$$$$$$$$$$$ ADD MODAL $$$$$$$$$$$$$$ #}
