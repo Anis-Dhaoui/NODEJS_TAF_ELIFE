@@ -4,8 +4,13 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose');
-// Require basic authentication module
+
+// AUTHENTICATION WITH PASSPORT SESSION
 var Auth = require('./auth');
+var session = require('express-session');
+var fileStore = require('session-file-store')(session);
+var passport = require('passport');
+
 
 //new middleware function to override the req.method
 //FOR THE SAKE OF KEEPING REST API ROUTES AS IS
@@ -32,14 +37,26 @@ app.set('view engine', 'twig');
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+// app.use(cookieParser());
 app.use(methodOverride("_method"));
 
+//$$$$$$$$$$$$$$$$$$$$$$$$ AUTHENTICATION PASSPORT SESSION $$$$$$$$$$$$$$$$$$$$$$$$$$
+app.use(session({
+  name: 'session-id',
+  secret: '01234-56789-01234-56789',
+  saveUninitialized: false,
+  resave: true,
+  store: new fileStore()
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+//$$$$$$$$$$$$$$$$$$$$$$$$ AUTHENTICATION PASSPORT SESSION $$$$$$$$$$$$$$$$$$$$$$$$$$
+
 app.use('/', indexRouter);
-// Basic Auth middleware
-app.use(Auth);
 app.use('/users', usersRouter);
+//$$$$$$$$$$$$$$$$$$$$$$$$ AUTH MIDDLEWARE $$$$$$$$$$$$$$$$$$$$$$$$$$
+app.use(Auth);
+app.use(express.static(path.join(__dirname, 'public')));
 app.use('/products', productRouter);
 
 // catch 404 and forward to error handler
